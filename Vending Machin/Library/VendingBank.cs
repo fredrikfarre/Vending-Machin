@@ -4,8 +4,9 @@ using System.Text;
 
 namespace Vending_Machin.Library
 {
-    class ValidDenomination
+    public class VendingBank
     {
-        int[] ValidMoney = { 1, 5, 10, 20, 50, 100, 1000 };
+        public double Payments { get; set; }
+        public double Pending { get; set; }
     }
 }

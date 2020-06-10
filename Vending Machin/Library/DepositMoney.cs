@@ -8,36 +8,27 @@ namespace Vending_Machin.Library
     {
         public int MoneyBag = 0;
 
-
+        
 
         public int MoneyPool()
         {
-
-           
-            
             Console.WriteLine("--------------------------------------------------------\n");
-
             Console.WriteLine("Do you whant to buy? (y/n)");
             string Buy = Console.ReadLine().ToUpper();
-
             try
             {
                 if (Buy != "Y")
                 {
                     throw new Exception();
                 }
-
             }
-            catch (Exception e)
+            catch (Exception)
             {
-
                 Console.WriteLine("Welcome Back ");
-
             }
 
             while (Buy == "Y")
             {
-
                 Console.WriteLine("Enter money into the machine");
             
                 int userMoney = Convert.ToInt32(Console.ReadLine());
@@ -82,32 +73,12 @@ namespace Vending_Machin.Library
                 }
                 
                 
-                Console.WriteLine("Do you to pot more money in the machine? y/n");
-
+                Console.WriteLine("Do you to put more money in the machine? y/n");
                 Buy = Console.ReadLine().ToUpper();
-                //try
-                //{
-                //    if (Buy != "Y" || Buy != "N")
-                //    {
-                //        throw new Exception();
-                //    }
-
-                //}
-                //catch (Exception e)
-                //{
-
-                //    Console.WriteLine("You entered wrong option ");
-
-                //}
-
             }
 
-
-
-            Console.WriteLine(MoneyBag);
+            Console.WriteLine($"{MoneyBag} pengar");
                 return MoneyBag;
-
-
         }
     }
 }

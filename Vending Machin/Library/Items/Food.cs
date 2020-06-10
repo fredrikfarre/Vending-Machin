@@ -6,16 +6,17 @@ namespace Vending_Machin.Library.Items
 {
     public class Food : IVendorMachineContent
     {
-
         private string name;
         private int price;
+        private int id;
 
-
-        public Food(string Name = "No Name", int Price = 0)
+        public Food( int ID = 0, string Name = "No Name", int Price = 0)
         {
+            id = ID;
             name = Name;
             price = Price;
         }
+
         public string GetName()
         {
             return this.name;
@@ -26,11 +27,21 @@ namespace Vending_Machin.Library.Items
         }
         public int GetCost()
         {
-            return price;
+            return this.price;
         }
         public void SetCost(int Price)
         {
             price = Price;
+        }
+
+        public int GetId()
+        {
+            return id;
+        }
+
+        public void SetId(int ID)
+        {
+            id = ID;
         }
     }
 }

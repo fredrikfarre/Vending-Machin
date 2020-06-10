@@ -6,12 +6,12 @@ namespace Vending_Machin.Library.Items
 {
         public class Drink : IVendorMachineContent
         {
-             private string name;
-             private int price;
-
-
-            public Drink(string Name = "No Name", int Price = 0)
+            private int id;
+            private string name;
+            private int price;
+            public Drink(int ID = 0, string Name = "No Name", int Price = 0)
             {
+                id = ID;
                 name = Name;
                 price = Price;
             }
@@ -31,5 +31,14 @@ namespace Vending_Machin.Library.Items
             {
                 price = Price;
             }
+             public int GetId()
+             {
+                  return id;
+             }
+
+            public void SetId(int ID)
+            {
+                id = ID;
+            }
         }
-    }
+}

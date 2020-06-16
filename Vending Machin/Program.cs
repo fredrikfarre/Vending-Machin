@@ -1,18 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 using Vending_Machin.Library;
 using Vending_Machin.Library.Items;
-using System.ComponentModel;
-using System.Collections.Concurrent;
-using System.Diagnostics.CodeAnalysis;
-using System.ComponentModel.Design;
-using System.Xml.Linq;
-using System.Net.Http.Headers;
-using System.Reflection.Metadata.Ecma335;
 
 namespace Vending_Machin
 {
@@ -20,10 +10,10 @@ namespace Vending_Machin
 
     public class Program
     {
-        public readonly static bool selectionOK = false;
-
+       
         static void Main(string[] args)
         {
+            
             List<IVendorMachineContent> list = new List<IVendorMachineContent>();
             {
                 list.Add(new Drink(1, "Coke", 20));
@@ -38,107 +28,37 @@ namespace Vending_Machin
             
             var DepositMoney = new DepositMoney();
             var Purchase = new Purchase();
-
-
-            Purchase.Menu();
+            Purchase.Menu();           
             int money = DepositMoney.MoneyPool();
-            string result = Purchase.DisplaySelections();
-            Purchase.Selection(result);
-            int _money = Choice(result, money, list, selectionOK);
-            
-            Console.WriteLine("Do you whant to buy more stufe? (y/n)");
-            
-            string Buy = Console.ReadLine().ToUpper();
-            
-            //if(Buy == "N")
-            //{
-            //    Console.WriteLine($"You have money {_money} left. Do not forget to take the money!");
-            //}
-            //else
-            //{
-            //    result = Purchase.DisplaySelections();
-            //    Purchase.Selection(result);
+             while (true) 
+             {
+                string Choice = Purchase.DisplaySelections();
+                // while ( Choice != "Q") {
 
-            //    Choice(result, money, list, selectionOK);
-            //    _money = Choice(result, money, list, selectionOK);
-
-            //}
- 
-            
-            
-            
-            //  Choice(result, money, selectionOK);
-            
-
-            //    Console.WriteLine("Do you to put more money in the machine? y/n");
-            //    Buy = Console.ReadLine().ToUpper();
-            
-            //}
-
-
-        }
-        public static int Choice(string result, int money, List<IVendorMachineContent> list, bool selectionOK)
-        {
-            IVendorMachineContent coke = list[0];
-            IVendorMachineContent sprite = list[1];
-            IVendorMachineContent fanta = list[2];
-            IVendorMachineContent mary = list[3];
-            IVendorMachineContent mars = list[4];
-            IVendorMachineContent snickers = list[5];
-            IVendorMachineContent bounty = list[6];
-            IVendorMachineContent pizza = list[7];
-
-            while (!selectionOK)
-            {
-                switch (result)
+                if(money >= 15)
                 {
-                    case "C":
-                        money -= coke.GetCost();
-                        Console.WriteLine($"You have money { money} left, after bying a coke!");
-                        selectionOK = true;
-                        break;
-                    case "S":
-                        money -= sprite.GetCost();
-                        Console.WriteLine($"You have money { money} left, after bying a coke!");
-                        selectionOK = true;
-                        break;
-                    case "F":
-                        money -= fanta.GetCost();
-                        Console.WriteLine($"You have money { money} left, after bying a coke!");
-                        selectionOK = true;
-                        break;
-                    case "BM":
-                        money -= mary.GetCost();
-                        Console.WriteLine($"You ´have money { money} left, after bying a coke!");
-                        selectionOK = true;
-                        break;
-                    case "M":
-                        money -= mars.GetCost();
-                        Console.WriteLine($"You ´have money { money} left, after bying a coke!");
-                        selectionOK = true;
-                        break;
-                    case "SN":
-                        money -= snickers.GetCost();
-                        Console.WriteLine($"You ´have money { money} left, after bying a coke!");
-                        selectionOK = true;
-                        break;
-                    case "B":
-                        money -= bounty.GetCost();
-                        Console.WriteLine($"You ´have money { money} left, after bying a coke!");
-                        selectionOK = true;
-                        break;
-                    case "P":
-                        money -= pizza.GetCost();
-                        Console.WriteLine($"You ´have money { money} left, after bying a pizza!");
-                        selectionOK = true;
-                        break;
-
+                 
+                     money = Purchase.Selection(Choice, list, money);
+                     Console.WriteLine(money);                                    
                 }
-            }
-              return money; 
+                else 
+                {
+                    Console.WriteLine($"Here you have you money { money }");
+                    Environment.Exit(-1);
+                }                     
+             }
+                             
+                
+                                //else
+                                //{
+                                //     DepositMoney.MoneyPool();
+                                //}
+                                    // Purchase.DisplaySelections();
         }
+                //}
+                //        if(Choice == "Q") {Console.WriteLine($"change back {money} kr");}
     }
+
 }
 
 
-           

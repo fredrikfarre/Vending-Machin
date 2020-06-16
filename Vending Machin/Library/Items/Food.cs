@@ -16,7 +16,6 @@ namespace Vending_Machin.Library.Items
             name = Name;
             price = Price;
         }
-
         public string GetName()
         {
             return this.name;
@@ -33,12 +32,10 @@ namespace Vending_Machin.Library.Items
         {
             price = Price;
         }
-
         public int GetId()
         {
             return id;
         }
-
         public void SetId(int ID)
         {
             id = ID;

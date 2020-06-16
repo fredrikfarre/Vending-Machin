@@ -6,19 +6,17 @@ namespace Vending_Machin.Library
 {
     class DepositMoney
     {
-        public int MoneyBag = 0;
-
-        
+        public int MoneyBag { get; set; }
 
         public int MoneyPool()
         {
-            Console.WriteLine("--------------------------------------------------------\n");
             Console.WriteLine("Do you whant to buy? (y/n)");
             string Buy = Console.ReadLine().ToUpper();
             try
             {
                 if (Buy != "Y")
                 {
+                    //Console.WriteLine($"Here you have you money {MoneyBag} kr");
                     throw new Exception();
                 }
             }
@@ -63,21 +61,15 @@ namespace Vending_Machin.Library
                         break;
                     case 1000:
                         Console.WriteLine("You enterd 1000 kr");
-                        Console.WriteLine($"You have { MoneyBag += ValidMoney[6]} kr in the machine now. ");
-                        
+                        Console.WriteLine($"You have { MoneyBag += ValidMoney[6]} kr in the machine now. ");    
                         break;
-
                     default:
                         Console.WriteLine("Not valid denomination");
                         break;
                 }
-                
-                
                 Console.WriteLine("Do you to put more money in the machine? y/n");
                 Buy = Console.ReadLine().ToUpper();
             }
-
-            Console.WriteLine($"{MoneyBag} pengar");
                 return MoneyBag;
         }
     }
